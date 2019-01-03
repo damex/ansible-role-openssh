@@ -1,0 +1,27 @@
+---
+packages:
+  - openssh-server
+
+openssh_sshd_configuration_path: "/etc/ssh/sshd_config"
+openssh_sshd_port: "22"
+openssh_sshd_addressfamily: "any"
+openssh_sshd_listenaddresses:
+  - "0.0.0.0"
+  - "::"
+
+openssh_sshd_authorizedkeysfile: ".ssh/authorized_keys"
+
+openssh_ed25519_host_key_path: "/etc/ssh/ssh_host_ed25519_key"
+openssh_ecdsa_host_key_path: "/etc/ssh/ssh_host_ecdsa_key"
+openssh_rsa_host_key_path: "/etc/ssh/ssh_host_rsa_key"
+
+openssh_sshd_syslogfacility: "AUTHPRIV"
+openssh_sshd_loglevel: "DEBUG"
+
+openssh_sshd_tcpkeepalive: "yes"
+openssh_sshd_clientaliveinterval: "600"
+openssh_sshd_clientalivecountmax: "3"
+
+openssh_sshd_usedns: "no"
+openssh_sshd_compression: "yes"
+openssh_sshd_permittty: "yes"

@@ -1,0 +1,43 @@
+# {{ ansible_managed }}
+
+Port {{ openssh_sshd_port }}
+AddressFamily {{ openssh_sshd_addressfamily }}
+{% for listenaddress in openssh_sshd_listenaddresses %}
+ListenAddress {{ listenaddress }}
+{% endfor %}
+
+HostKey {{ openssh_ed25519_host_key_path }}
+
+SyslogFacility {{ openssh_sshd_syslogfacility }}
+LogLevel {{ openssh_sshd_loglevel }}
+
+LoginGraceTime 1m
+PermitRootLogin without-password
+MaxAuthTries 4
+
+PermitTTY {{ openssh_sshd_permittty }}
+
+PubkeyAuthentication yes
+AuthorizedKeysFile {{ openssh_sshd_authorizedkeysfile }}
+
+HostbasedAuthentication no
+PasswordAuthentication no
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+GSSAPIAuthentication no
+GSSAPICleanupCredentials yes
+
+UsePAM no
+
+AllowAgentForwarding yes
+AllowTcpForwarding yes
+X11Forwarding no
+
+TCPKeepAlive {{ openssh_sshd_tcpkeepalive }}
+ClientAliveInterval {{ openssh_sshd_clientaliveinterval }}
+ClientAliveCountMax {{ openssh_sshd_clientalivecountmax }}
+
+UseDNS {{ openssh_sshd_usedns }}
+Compression {{ openssh_sshd_compression }}
+
+Subsystem sftp /usr/lib/openssh/sftp-server

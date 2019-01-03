@@ -1,0 +1,25 @@
+---
+- name: ensure ed25519 host key is present
+  command: ssh-keygen -q -t ed25519 -N "" -f ssh_host_ed25519_key
+  args:
+    chdir: "/etc/ssh"
+    creates: "{{ openssh_ed25519_host_key_path }}"
+  become: true
+
+- name: ensure only ed25519 host key is present
+  file:
+    path: "{{ item }}"
+    state: "absent"
+  loop:
+    - "{{ openssh_ecdsa_host_key_path }}"
+    - "{{ openssh_ecdsa_host_key_path }}.pub"
+    - "{{ openssh_rsa_host_key_path }}"
+    - "{{ openssh_rsa_host_key_path }}.pub"
+  become: true
+
+- name: ensure sshd configuration is correct
+  template:
+    src: sshd_config.j2
+    dest: "{{ openssh_sshd_configuration_path }}"
+  notify: test and restart sshd
+  become: true
