@@ -5,6 +5,7 @@ AddressFamily {{ openssh_sshd_addressfamily }}
 {% for listenaddress in openssh_sshd_listenaddresses %}
 ListenAddress {{ listenaddress }}
 {% endfor %}
+Protocol {{ openssh_sshd_protocol }}
 
 HostKey {{ openssh_ed25519_host_key_path }}
 

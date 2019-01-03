@@ -8,6 +8,7 @@ openssh_sshd_addressfamily: "any"
 openssh_sshd_listenaddresses:
   - "0.0.0.0"
   - "::"
+openssh_sshd_protocol: "2"
 
 openssh_sshd_authorizedkeysfile: ".ssh/authorized_keys"
 
