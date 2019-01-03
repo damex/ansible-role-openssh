@@ -10,6 +10,7 @@ openssh_sshd_listenaddresses:
   - "::"
 openssh_sshd_protocol: "2"
 
+openssh_sshd_pubkeyacceptedkeytypes: "ssh-ed25519"
 openssh_sshd_authorizedkeysfile: ".ssh/authorized_keys"
 
 openssh_ed25519_host_key_path: "/etc/ssh/ssh_host_ed25519_key"
