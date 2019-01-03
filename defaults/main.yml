@@ -23,6 +23,10 @@ openssh_sshd_tcpkeepalive: "yes"
 openssh_sshd_clientaliveinterval: "600"
 openssh_sshd_clientalivecountmax: "3"
 
+openssh_sshd_usepam: "no"
 openssh_sshd_usedns: "no"
 openssh_sshd_compression: "yes"
 openssh_sshd_permittty: "yes"
+
+openssh_sshd_subsystems:
+  - "sftp /usr/lib/openssh/sftp-server"

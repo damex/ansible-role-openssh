@@ -16,7 +16,6 @@ LoginGraceTime 1m
 PermitRootLogin without-password
 MaxAuthTries 4
 
-PermitTTY {{ openssh_sshd_permittty }}
 
 PubkeyAuthentication yes
 AuthorizedKeysFile {{ openssh_sshd_authorizedkeysfile }}
@@ -28,8 +27,6 @@ ChallengeResponseAuthentication no
 GSSAPIAuthentication no
 GSSAPICleanupCredentials yes
 
-UsePAM no
-
 AllowAgentForwarding yes
 AllowTcpForwarding yes
 X11Forwarding no
@@ -38,7 +35,11 @@ TCPKeepAlive {{ openssh_sshd_tcpkeepalive }}
 ClientAliveInterval {{ openssh_sshd_clientaliveinterval }}
 ClientAliveCountMax {{ openssh_sshd_clientalivecountmax }}
 
+UsePAM {{ openssh_sshd_usepam }}
 UseDNS {{ openssh_sshd_usedns }}
 Compression {{ openssh_sshd_compression }}
+PermitTTY {{ openssh_sshd_permittty }}
 
-Subsystem sftp /usr/lib/openssh/sftp-server
+{% for subsystem in openssh_sshd_subsystems %}
+Subsystem {{ subsystem }}
+{% endfor %}
