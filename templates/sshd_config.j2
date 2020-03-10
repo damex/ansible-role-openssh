@@ -1,19 +1,23 @@
 # {{ ansible_managed }}
 
 Port {{ openssh_sshd_port }}
-AddressFamily {{ openssh_sshd_addressfamily }}
 {% for listenaddress in openssh_sshd_listenaddresses %}
 ListenAddress {{ listenaddress }}
 {% endfor %}
 Protocol {{ openssh_sshd_protocol }}
+{% for hostkeytype in openssh_sshd_hostkeytypes %}
+HostKey {{ openssh_conf_dir }}/ssh_host_{{ hostkeytype }}_key
+{% endfor %}
 
-HostKey {{ openssh_ed25519_host_key_path }}
+AcceptEnv {{ openssh_sshd_acceptenv }}
+AddressFamily {{ openssh_sshd_addressfamily }}
+AllowAgentForwarding {{ openssh_sshd_allowagentforwarding }}
 
 SyslogFacility {{ openssh_sshd_syslogfacility }}
 LogLevel {{ openssh_sshd_loglevel }}
 
-LoginGraceTime 1m
-PermitRootLogin without-password
+LoginGraceTime {{ openssh_sshd_logingracetime }}
+PermitRootLogin {{ openssh_sshd_permitrootlogin }}
 MaxAuthTries 4
 
 

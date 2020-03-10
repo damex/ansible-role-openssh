@@ -1,0 +1,7 @@
+---
+- name: ensure sshd_config
+  template:
+    src: sshd_config.j2
+    dest: "{{ openssh_sshd_conf_file }}"
+  become: true
+  register: openssh_sshd_config

@@ -1,0 +1,10 @@
+---
+- name: ensure host keys
+  block:
+    - name: ensure host keys
+      openssh_keypair:
+        path: "{{ openssh_conf_dir }}/ssh_host_{{ item }}_key"
+        type: "{{ item }}"
+        state: "present"
+      loop: "{{ openssh_sshd_hostkeytypes }}"
+  become: true
