@@ -1,0 +1,8 @@
+---
+- name: ensure openssh package
+  include_role:
+    name: "damex.package"
+  vars:
+    package_packages:
+      - name: "{{ openssh_package_name }}"
+        state: "{{ openssh_package_state }}"
