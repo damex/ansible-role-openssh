@@ -1,4 +1,6 @@
 ---
+openssh_package_name: "openssh"
+openssh_package_state: "present"
 openssh_sshd_configuration_path: "/etc/ssh/sshd_config"
 openssh_sshd_port: "22"
 openssh_sshd_addressfamily: "any"

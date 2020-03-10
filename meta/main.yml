@@ -1,9 +1,17 @@
 ---
 galaxy_info:
-  author: Roman Kuzmitsky
-  description: role that contain openssh configuration
+  role_name: openssh
+  author: Roman Kuzmitskii
+  description: openssh role
   license: GPLv2
-  min_ansible_version: 2.5
-  galaxy_tags: []
+  min_ansible_version: 2.8
+  galaxy_tags:
+    - openssh
+    - sshd
+    - system
+  platforms:
+    - name: "Debian"
+      versions:
+        - "buster"
 dependencies:
-  - role: package
+  - role: "damex.package"
