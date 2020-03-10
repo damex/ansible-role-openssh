@@ -1,24 +1,30 @@
 ---
-openssh_package_name: "openssh"
+openssh_package_name: "openssh-server"
 openssh_package_state: "present"
-openssh_sshd_configuration_path: "/etc/ssh/sshd_config"
+openssh_service_name: "sshd"
+openssh_conf_dir: "/etc/ssh"
+openssh_sshd_conf_file: "{{ openssh_conf_dir }}/sshd_config"
 openssh_sshd_port: "22"
-openssh_sshd_addressfamily: "any"
 openssh_sshd_listenaddresses:
   - "0.0.0.0"
   - "::"
 openssh_sshd_protocol: "2"
 
+openssh_sshd_hostkeytypes:
+  - "ed25519"
+  - "ecdsa"
+  - "rsa"
+
+openssh_sshd_acceptenv: ""
+openssh_sshd_addressfamily: "any"
+openssh_sshd_allowagentforwarding: "yes"
+
 openssh_sshd_pubkeyacceptedkeytypes: "ssh-ed25519"
 openssh_sshd_authorizedkeysfile: ".ssh/authorized_keys"
-
-openssh_ed25519_host_key_path: "/etc/ssh/ssh_host_ed25519_key"
-openssh_ecdsa_host_key_path: "/etc/ssh/ssh_host_ecdsa_key"
-openssh_rsa_host_key_path: "/etc/ssh/ssh_host_rsa_key"
-
 openssh_sshd_syslogfacility: "AUTHPRIV"
 openssh_sshd_loglevel: "DEBUG"
-
+openssh_sshd_logingracetime: 30
+openssh_sshd_permitrootlogin: "no"
 openssh_sshd_tcpkeepalive: "yes"
 openssh_sshd_clientaliveinterval: "600"
 openssh_sshd_clientalivecountmax: "3"

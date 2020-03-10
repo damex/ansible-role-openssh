@@ -1,0 +1,17 @@
+---
+- name: ensure systemd
+  block:
+    - name: ensure openssh service is enabled
+      systemd:
+        name: "{{ openssh_service_name }}"
+        enabled: true
+    - name: ensure openssh service is started
+      systemd:
+        name: "{{ openssh_service_name }}"
+        state: "started"
+    - name: ensure openssh service is restarted
+      systemd:
+        name: "{{ openssh_service_name }}"
+        state: "restarted"
+      when: openssh_sshd_config.changed
+  become: true
