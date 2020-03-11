@@ -18,22 +18,35 @@ openssh_sshd_hostkeytypes:
 
 openssh_sshd_acceptenv: ""
 openssh_sshd_addressfamily: "any"
-openssh_sshd_allowagentforwarding: "yes"
+openssh_sshd_allowagentforwarding: true
+openssh_sshd_allowtcpforwarding: true
 
+
+openssh_sshd_maxauthtries: 4
+openssh_sshd_hostbasedauthentication: false
+openssh_sshd_passwordauthentication: false
+openssh_sshd_permitemptypasswords: false
+
+openssh_sshd_pubkeyauthentication: true
+openssh_sshd_x11forwarding: false
 openssh_sshd_pubkeyacceptedkeytypes: "ssh-ed25519"
 openssh_sshd_authorizedkeysfile: ".ssh/authorized_keys"
 openssh_sshd_syslogfacility: "AUTHPRIV"
 openssh_sshd_loglevel: "DEBUG"
 openssh_sshd_logingracetime: 30
 openssh_sshd_permitrootlogin: "no"
-openssh_sshd_tcpkeepalive: "yes"
+openssh_sshd_tcpkeepalive: true
 openssh_sshd_clientaliveinterval: "600"
 openssh_sshd_clientalivecountmax: "3"
 
-openssh_sshd_usepam: "no"
-openssh_sshd_usedns: "no"
-openssh_sshd_compression: "yes"
-openssh_sshd_permittty: "yes"
+openssh_sshd_challengeresponseauthentication: false
+openssh_sshd_gssapiauthentication: false
+openssh_sshd_gssapicleanupcredentials: true
+
+openssh_sshd_usepam: false
+openssh_sshd_usedns: false
+openssh_sshd_compression: true
+openssh_sshd_permittty: true
 
 openssh_sshd_subsystems:
   - "sftp /usr/lib/openssh/sftp-server"
