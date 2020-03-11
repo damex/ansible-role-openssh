@@ -2,6 +2,7 @@
 openssh_package_name: "openssh-server"
 openssh_package_state: "present"
 openssh_service_name: "sshd"
+openssh_sshd_binary: "/sbin/sshd"
 openssh_conf_dir: "/etc/ssh"
 openssh_sshd_conf_file: "{{ openssh_conf_dir }}/sshd_config"
 openssh_sshd_port: "22"

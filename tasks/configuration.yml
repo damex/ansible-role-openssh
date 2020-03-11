@@ -1,7 +1,12 @@
 ---
 - name: ensure sshd_config
   template:
-    src: sshd_config.j2
+    src: "sshd_config.j2"
     dest: "{{ openssh_sshd_conf_file }}"
+    owner: "root"
+    group: "root"
+    mode: 0644
+    validate: "{{ openssh_sshd_binary }} -t -f %s"
+    backup: true
   become: true
   register: openssh_sshd_config
