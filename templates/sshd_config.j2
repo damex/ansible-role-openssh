@@ -11,39 +11,38 @@ HostKey {{ openssh_conf_dir }}/ssh_host_{{ hostkeytype }}_key
 
 AcceptEnv {{ openssh_sshd_acceptenv }}
 AddressFamily {{ openssh_sshd_addressfamily }}
-AllowAgentForwarding {{ openssh_sshd_allowagentforwarding }}
+AllowAgentForwarding {{ 'yes' if openssh_sshd_allowagentforwarding else 'no' }}
+AllowTcpForwarding {{ 'yes' if openssh_sshd_allowtcpforwarding else 'no' }}
 
+X11Forwarding {{ 'yes' if openssh_sshd_x11forwarding else 'no' }}
 SyslogFacility {{ openssh_sshd_syslogfacility }}
 LogLevel {{ openssh_sshd_loglevel }}
 
 LoginGraceTime {{ openssh_sshd_logingracetime }}
 PermitRootLogin {{ openssh_sshd_permitrootlogin }}
-MaxAuthTries 4
+MaxAuthTries {{ openssh_sshd_maxauthtries }}
 
 
-PubkeyAuthentication yes
+PubkeyAuthentication {{ 'yes' if openssh_sshd_pubkeyauthentication else 'no' }}
 PubkeyAcceptedKeyTypes {{ openssh_sshd_pubkeyacceptedkeytypes }}
 AuthorizedKeysFile {{ openssh_sshd_authorizedkeysfile }}
 
-HostbasedAuthentication no
-PasswordAuthentication no
-PermitEmptyPasswords no
-ChallengeResponseAuthentication no
-GSSAPIAuthentication no
-GSSAPICleanupCredentials yes
+HostbasedAuthentication {{ 'yes' if openssh_sshd_hostbasedauthentication else 'no' }}
+PasswordAuthentication {{ 'yes' if openssh_sshd_passwordauthentication else 'no' }}
+PermitEmptyPasswords {{ 'yes' if openssh_sshd_permitemptypasswords else 'no' }}
+ChallengeResponseAuthentication {{ 'yes' if openssh_sshd_challengeresponseauthentication else 'no' }}
+GSSAPIAuthentication {{ 'yes' if openssh_sshd_gssapiauthentication else 'no' }}
+GSSAPICleanupCredentials {{ 'yes' if openssh_sshd_gssapicleanupcredentials else 'no' }}
 
-AllowAgentForwarding yes
-AllowTcpForwarding yes
-X11Forwarding no
 
-TCPKeepAlive {{ openssh_sshd_tcpkeepalive }}
+TCPKeepAlive {{ 'yes' if openssh_sshd_tcpkeepalive else 'no' }}
 ClientAliveInterval {{ openssh_sshd_clientaliveinterval }}
 ClientAliveCountMax {{ openssh_sshd_clientalivecountmax }}
 
-UsePAM {{ openssh_sshd_usepam }}
-UseDNS {{ openssh_sshd_usedns }}
-Compression {{ openssh_sshd_compression }}
-PermitTTY {{ openssh_sshd_permittty }}
+UsePAM {{ 'yes' if openssh_sshd_usepam else 'no' }}
+UseDNS {{ 'yes' if openssh_sshd_usedns else 'no' }}
+Compression {{ 'yes' if openssh_sshd_compression else 'no' }}
+PermitTTY {{ 'yes' if openssh_sshd_permittty else 'no' }}
 
 {% for subsystem in openssh_sshd_subsystems %}
 Subsystem {{ subsystem }}
